@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Асуулт, хариулт устгах{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Асуулт, хариулт устгах" %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-xl-5">
+
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+
+          <p class="mb-3">
+            <strong>"{{ object.question|truncatechars:60 }}"</strong>
+            асуултыг устгах уу?
+          </p>
+
+          <form method="post" class="mt-3">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger w-100 mb-2">
+              Тийм
+            </button>
+
+            <a href="{% url 'my_faq_list' %}" class="btn btn-secondary w-100">
+              Болих
+            </a>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

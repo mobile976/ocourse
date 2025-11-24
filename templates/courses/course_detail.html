@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Хичээлийн танилцуулга" %}
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+
+      <div class="card mb-4 shadow-sm">
+        {% if course.image_url %}
+        <img src="{{ course.image_url }}" class="card-img-top" alt="{{ course.title }}"
+          style="max-height: 320px; object-fit: cover;">
+        {% endif %}
+
+        <div class="card-body">
+          {% if course.duration or course.created_at or course.owner %}
+          <div class="mb-3 d-flex flex-wrap gap-2">
+            {% if course.duration %}
+            <span class="badge text-bg-primary">⏱ {{ course.duration }}</span>
+            {% endif %}
+            {% if course.created_at %}
+            <span class="badge text-bg-light text-muted">
+              🗓 {{ course.created_at|date:"Y-m-d" }}
+            </span>
+            {% endif %}
+            {% if course.owner %}
+            <span class="badge text-bg-light text-muted">
+              👤 {{ course.owner.username }}
+            </span>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if course.description %}
+          <h2 class="h5 mb-2">{{ course.title|truncatechars:50 }}</h2>
+          <p class="mb-0">
+            {{ course.description|linebreaks }}
+          </p>
+          {% else %}
+          <p class="text-muted mb-0">
+            Энэ хичээлийн дэлгэрэнгүй тайлбар ороогүй байна.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if course.video_url %}
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h3 class="h5 mb-3">Сургалтын видео</h3>
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="{{ course.video_url }}"
+          title="{{ course.title }}"
+          style="width:100%; height:100%; border:0;"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+{% endif %}
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        {% if user.is_authenticated and course.owner == user %}
+        <div class="btn-group">
+          <a href="{% url 'course_update' course.pk %}" class="btn btn-sm btn-outline-secondary">
+            Хичээл засах
+          </a>
+          <a href="{% url 'course_delete' course.pk %}" class="btn btn-sm btn-outline-danger">
+            Хичээл устгах
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="h6 mb-0">Сэтгэгдэл</h3>
+          {% if comments %}
+          <span class="badge text-bg-light">
+            {{ comments|length }} сэтгэгдэл
+          </span>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {% if comments %}
+          <ul class="list-group list-group-flush">
+            {% for c in comments %}
+            <li class="list-group-item px-0">
+              <div class="d-flex justify-content-between">
+                <strong>{{ c.name }}</strong>
+                <small class="text-muted">
+                  {{ c.created_at|date:"Y-m-d H:i" }}
+                </small>
+              </div>
+              <p class="mb-0 mt-1">
+                {{ c.text|linebreaks }}
+              </p>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="text-muted mb-0">
+            Одоогоор сэтгэгдэл байхгүй байна.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h3 class="h6 mb-0">Сэтгэгдэл бичх</h3>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">
+              Илгээх
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <h4 class="h6 text-uppercase text-muted mb-3">{{ course.title|truncatechars:50 }} хичээлийн товч мэдээлэл</h4>
+          <ul class="list-unstyled small mb-0">
+            {% if course.duration %}
+            <li class="mb-2">
+              <strong>Хугацаа:</strong> {{ course.duration }}
+            </li>
+            {% endif %}
+            {% if course.created_at %}
+            <li class="mb-2">
+              <strong>Нэмэгдсэн:</strong> {{ course.created_at|date:"Y-m-d" }}
+            </li>
+            {% endif %}
+            {% if course.owner %}
+            <li class="mb-2">
+              <strong>Багш:</strong> {{ course.owner.username }}
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

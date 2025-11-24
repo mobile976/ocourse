@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Миний асуулт, хариулт{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Миний оруулсан асуулт, хариулт" %}
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <a href="{% url 'faq_create' %}" class="btn btn-primary">
+      + Шинэ асуулт, хариулт нэмэх
+    </a>
+  </div>
+
+  {% if faqs %}
+    <div class="card shadow-sm mb-3">
+      <div class="card-body p-0">
+        <div class="list-group list-group-flush">
+
+          {% for item in faqs %}
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="me-3">
+                  <h2 class="h6 mb-1">{{ item.question }}</h2>
+                  <p class="mb-2 text-muted small">
+                    {{ item.answer|truncatewords:40 }}
+                  </p>
+                </div>
+
+                <div class="text-end">
+                  <div class="btn-group btn-group-sm mb-1" role="group">
+                    <a
+                      href="{% url 'faq_update' item.pk %}"
+                      class="btn btn-outline-secondary"
+                    >
+                      Засах
+                    </a>
+                    <a
+                      href="{% url 'faq_delete' item.pk %}"
+                      class="btn btn-outline-danger"
+                    >
+                      Устгах
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      Та одоогоор асуулт, хариулт нэмээгүй байна.
+      <a href="{% url 'faq_create' %}" class="alert-link">
+        Эхний асуулт, хариултаа нэмэх
+      </a>.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

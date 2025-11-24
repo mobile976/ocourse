@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Асуулт, хариулт {{ faq.question }}{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Асуулт, хариулт дэлгэрэнгүй" %}
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+
+      <div class="card shadow-sm mb-3">
+        <div class="card-header">
+          <h2 class="h5 mb-0">{{ faq.question }}</h2>
+        </div>
+        <div class="card-body">
+          {% if faq.answer %}
+            <p class="mb-0">
+              {{ faq.answer|linebreaks }}
+            </p>
+          {% else %}
+            <p class="text-muted mb-0">
+              Хариулт оруулаагүй байна.
+            </p>
+          {% endif %}
+        </div>
+        <div class="card-footer small text-muted d-flex justify-content-between">
+          <span>
+            {% if faq.author %}
+              Оруулсан: {{ faq.author.username }}
+            {% endif %}
+          </span>
+          {% if faq.created_at %}
+            <span>🗓 {{ faq.created_at|date:"Y-m-d H:i" }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="h6 mb-0">Сэтгэгдэл</h3>
+          {% if comments %}
+            <span class="badge text-bg-light">
+              {{ comments|length }} сэтгэгдэл
+            </span>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {% if comments %}
+            <ul class="list-group list-group-flush">
+              {% for c in comments %}
+                <li class="list-group-item px-0">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <strong>{{ c.name }}</strong>
+                      {% if c.email %}
+                        <small class="text-muted">({{ c.email }})</small>
+                      {% endif %}
+                    </div>
+                    <small class="text-muted">
+                      {{ c.created_at|date:"Y-m-d H:i" }}
+                    </small>
+                  </div>
+                  <p class="mb-0 mt-1">
+                    {{ c.text|linebreaks }}
+                  </p>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted mb-0">
+              Одоогоор сэтгэгдэл алга.
+            </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-header">
+          <h3 class="h6 mb-0">Сэтгэгдэл бичих</h3>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">
+              Илгээх
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="h6 text-uppercase text-muted mb-3">Товч мэдээлэл</h4>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2">
+                <strong>Нэр:</strong> {{ faq.question }}
+              </li>
+            {% if faq.author %}
+              <li class="mb-2">
+                <strong>Нэмсэн хэрэглэгч:</strong> {{ faq.author.username }} {{ faq.question }}
+              </li>
+            {% endif %}
+            {% if faq.created_at %}
+              <li class="mb-2">
+                <strong>Огноо:</strong> {{ faq.created_at|date:"Y-m-d" }}
+              </li>
+            {% endif %}
+            {% if faq.updated_at %}
+              <li class="mb-2">
+                <strong>Сүүлд зассан:</strong> {{ faq.updated_at|date:"Y-m-d H:i" }}
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

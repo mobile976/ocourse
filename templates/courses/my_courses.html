@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Миний хичээлүүд{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Миний оруулсан хичээлүүд" %}
+<div class="container py-4">
+    <a href="{% url 'course_create' %}" class="btn btn-primary">
+      + Шинэ хичээл үүсгэх
+    </a>
+  </div>
+
+  {% if courses %}
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Нэр</th>
+                <th scope="col" style="width: 300px;">Нэмэгдсэн огноо</th>
+                <th scope="col" class="text-end" style="width: 180px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+                <tr>
+                  <td>
+                    <a href="{% url 'course_detail' course.pk %}">
+                      {{ course.title }}
+                    </a>
+                  </td>
+                  <td>
+                    {{ course.created_at|date:"Y-m-d" }}
+                  </td>
+                  <td class="text-end">
+                    <div class="btn-group btn-group-sm" role="group">
+                      <a
+                        href="{% url 'course_update' course.pk %}"
+                        class="btn btn-outline-secondary"
+                      >
+                        Засах
+                      </a>
+                      <a
+                        href="{% url 'course_delete' course.pk %}"
+                        class="btn btn-outline-danger"
+                      >
+                        Устгах
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-info mt-3">
+      Одоогоор хичээл оруулаагүй байна.
+      <a href="{% url 'course_create' %}" class="alert-link">
+        Эхний хичээлээ үүсгэх
+      </a>.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Профайл засах{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Профайл засах" %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-xl-6">
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            {% if request.user.profile.profile_picture %}
+              <img
+                src="{{ request.user.profile.profile_picture }}"
+                alt="Profile picture"
+                class="rounded-circle shadow-sm mb-2"
+                style="width:120px; height:120px; object-fit:cover;"
+              >
+            {% else %}
+              <div
+                class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto shadow-sm mb-2"
+                style="width:120px; height:120px; font-size:2rem;"
+              >
+                {{ request.user.username|slice:":1"|upper }}
+              </div>
+            {% endif %}
+          </div>
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger py-2">
+                {{ form.non_field_errors }}
+              </div>
+            {% endif %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100 mt-2">
+              Хадгалах
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

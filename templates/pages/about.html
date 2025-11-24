@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ about.title }}{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Бидний тухай" %}
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body" style="line-height: 1.8;">
+          {{ about.content|safe }}
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body small">
+          <h2 class="h6 text-uppercase text-muted mb-3">Холбоо барих</h2>
+          <p class="mb-2">
+            Асуулт, санал хүсэлт байвал бидэнтэй холбоо барина уу.
+          </p>
+          <ul class="list-unstyled mb-0">
+            <li>📧 admin@admin.com</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

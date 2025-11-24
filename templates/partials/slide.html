@@ -1,0 +1,46 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/slide.css' %}">
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <!-- SLIDE 1 -->
+    <div class="carousel-item active">
+      <img src="https://www.studioenglish.com/wp-content/uploads/2021/05/How-to-Learn-English-by-Yourself-1_d.jpg" alt="Elearning slide" />
+
+      <div class="container">
+        <div class="carousel-caption text-start">
+          <h1>Цахим сургалт</h1>
+          <p class="opacity-75">
+            Онлайн сургалт нэг дор цэгцтэйгээр үзэх.
+          </p>
+          <p><a class="btn btn-lg btn-primary" href="{% url 'faq_list' %}">Дэлгэрэнгүй</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="carousel-item">
+      <img src="https://www.ulc.com.sg/wp-content/uploads/2022/11/An-English-Language-School-In-Singapore-Recommends-The-Best-Songs-For-Learning-English-scaled.jpg" alt="Elearning slide 2" />
+
+      <div class="container">
+        <div class="carousel-caption text-end">
+          <h1>Багш нар</h1>
+          <p>Орчин үеийн програмчлалын технологийн онлайн сургалт.</p>
+          <p><a class="btn btn-lg btn-primary" href="{% url 'profile_list' %}">Дэлгэрэнгүй</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>

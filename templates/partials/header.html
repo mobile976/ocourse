@@ -1,0 +1,106 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<header class="border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm navbar-clean">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'course_list' %}">
+        <img src="{% static 'img/logo.svg' %}" alt="E-Learning Logo" style="height: 30px;" class="me-2">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'course_list' %}">
+              Сургалт
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'faq_list' %}">
+              Асуулт хариулт
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'wish_list' %}">
+              Сурагч
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile_list' %}">
+              Багш
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">
+              Бидний тухай
+            </a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="d-none d-md-flex flex-column user-chip">
+                <span class="fw-semibold text-light"> Сайна уу {{ user.username }}</span>
+              </div>
+              <span class="d-md-none user-chip">
+                {{ user.username }}
+              </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-soft" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item" href="{% url 'profile_detail' request.user.profile.pk %}">
+                  Миний профайл
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'my_courses' %}">
+                  Миний хичээл
+                </a>
+              </li>
+              {% if user.is_staff %}
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" href="/admin/">
+                  Django админ
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </li>
+
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-light px-3">
+                Гарах
+              </button>
+            </form>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">
+              Нэвтрэх
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn btn-sm btn-outline-light px-3" href="{% url 'register' %}">
+              Бүртгүүлэх
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Хэрэглэгчийн хэсэг{% endblock %}
+
+{% block content %}
+{% include "partials/slide_detail.html" with title="Хэрэглэгчийн хэсэг" %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-xl-5">
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <p class="text-muted mb-4 text-center">
+            Доорх үйлдлүүдээс сонгон хэрэглэгчийн бүртгэлтэй холбоотой үйлчилгээнд нэвтэрнэ үү.
+          </p>
+
+          <div class="list-group">
+            <a
+              href="{% url 'login' %}"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              Нэвтрэх
+              <span class="text-muted small">→</span>
+            </a>
+
+            <a
+              href="{% url 'register' %}"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              Бүртгүүлэх
+              <span class="text-muted small">→</span>
+            </a>
+
+            <a
+              href="{% url 'profile_list' %}"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              Хэрэглэгчдийн жагсаалт
+              <span class="text-muted small">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
