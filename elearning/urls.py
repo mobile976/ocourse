@@ -21,7 +21,7 @@ from pages.views import about_view
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
-    path("courses/", include("courses.urls")),
+    path("", include("courses.urls")),
     path("faq/", include("faq.urls")),
     path("about/", about_view, name="about"),
     path("student/", include("student.urls")),

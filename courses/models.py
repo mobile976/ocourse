@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from .validators import validate_youtube_url
 
 
 class Category(models.Model):
@@ -35,7 +36,7 @@ class Course(models.Model):
     duration = models.CharField(max_length=100, blank=True)
     short_description = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)
-    video_url = models.URLField(blank=True)
+    video_url = models.URLField(blank=True, validators=[validate_youtube_url],)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
