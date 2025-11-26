@@ -77,7 +77,7 @@ class ProfileForm(forms.ModelForm):
             "phone_number": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Жишээ: 88117783",
+                    "placeholder": "Жишээ: 88117773",
                 }
             ),
             "subscription_level": forms.Select(

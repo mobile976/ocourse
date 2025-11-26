@@ -10,11 +10,9 @@ class CourseWish(models.Model):
 
     title = models.CharField(
         max_length=200,
-        help_text="Ямар хичээл үзмээр байна вэ?",
     )
     description = models.TextField(
         blank=True,
-        help_text="Ямар агуулга, сэдвүүд орвол зүгээр гэж бодож байгаагаа бичнэ үү.",
     )
     desired_level = models.CharField(
         max_length=20,
@@ -25,11 +23,9 @@ class CourseWish(models.Model):
     name = models.CharField(
         max_length=100,
         blank=True,
-        help_text="(заавал биш)",
     )
     email = models.EmailField(
         blank=True,
-        help_text="(заавал биш)",
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

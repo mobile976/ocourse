@@ -19,7 +19,6 @@ class Profile(models.Model):
     profile_picture = models.URLField(
         blank=True,
         null=True,
-        help_text="Зургийн URL оруулна уу"
     )
     bio = models.TextField(blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
@@ -31,7 +30,6 @@ class Profile(models.Model):
     )
     social_links = models.TextField(
         blank=True,
-        help_text="Нэг мөрөнд нэг URL бичнэ үү.",
     )
 
     def __str__(self):

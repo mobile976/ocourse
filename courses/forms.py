@@ -16,12 +16,12 @@ class CourseForm(forms.ModelForm):
         ]
 
         labels = {
-            "title": "Хичээлийн нэр",
+            "title": "Хичээлийн нэр*",
             "image_url": "Зургийн URL",
             "duration": "Хугацаа",
             "short_description": "Товч тайлбар",
-            "description": "Дэлгэрэнгүй тайлбар",
-            "video_url": "Видео URL",
+            "description": "Дэлгэрэнгүй тайлбар*",
+            "video_url": "Видео URL*",
             "category": "Ангилал",
         }
 

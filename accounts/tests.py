@@ -61,7 +61,7 @@ class ProfileFormTests(TestCase):
             data={
                 "profile_picture": "https://example.com/avatar.jpg",
                 "bio": "Энэ бол товч намтар.",
-                "phone_number": "88117783",
+                "phone_number": "88117773",
                 "subscription_level": "basic",
                 "social_links": "https://facebook.com/user\nhttps://instagram.com/user",
             },
@@ -74,7 +74,7 @@ class ProfileFormTests(TestCase):
             data={
                 "profile_picture": "not-a-valid-url",
                 "bio": "Намтар",
-                "phone_number": "88117783",
+                "phone_number": "88117773",
                 "subscription_level": "free",
                 "social_links": "",
             },

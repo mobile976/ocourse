@@ -22,8 +22,8 @@ class FAQForm(forms.ModelForm):
             ),
         }
         labels = {
-            "question": "Асуулт",
-            "answer": "Хариулт",
+            "question": "Асуулт*",
+            "answer": "Хариулт*",
         }
 
     def clean_question(self):
@@ -34,7 +34,7 @@ class FAQForm(forms.ModelForm):
 
         qs = FAQ.objects.exclude(pk=self.instance.pk).filter(question__iexact=question)
         if qs.exists():
-            raise forms.ValidationError("Ийм асуулттай FAQ аль хэдийн байна. Шаардлагатай бол хуучныг засварлана уу.")
+            raise forms.ValidationError("Ийм асуулттай Асуулт, хариулт аль хэдийн байна. Шаардлагатай бол хуучныг засварлана уу.")
 
         return question
 
@@ -56,9 +56,9 @@ class FAQCommentForm(forms.ModelForm):
         fields = ["name", "email", "text"]
 
         labels = {
-            "name": "Нэр",
+            "name": "Нэр*",
             "email": "И-мэйл",
-            "text": "Сэтгэгдэл",
+            "text": "Сэтгэгдэл*",
         }
 
         widgets = {
@@ -71,7 +71,7 @@ class FAQCommentForm(forms.ModelForm):
             "email": forms.EmailInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Таны и-мэйл (шаардлагатай бол)",
+                    "placeholder": "Таны и-мэйл",
                 }
             ),
             "text": forms.Textarea(
