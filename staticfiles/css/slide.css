@@ -1,0 +1,49 @@
+  #myCarousel {
+    margin-bottom: 0;
+  }
+
+  #myCarousel .carousel-item {
+    height: 32rem;
+    position: relative;
+  }
+
+  #myCarousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* CAPTIONS */
+  #myCarousel .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+
+  /* HEADINGS */
+  #myCarousel h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  /* SMALLER TEXT */
+  #myCarousel p {
+    font-size: 1.1rem;
+  }
+
+  /* PREV/NEXT BUTTONS SIZE */
+  #myCarousel .carousel-control-prev-icon,
+  #myCarousel .carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  /* RESPONSIVE */
+  @media (min-width: 768px) {
+    #myCarousel h1 {
+      font-size: 3.2rem;
+    }
+
+    #myCarousel p {
+      font-size: 1.25rem;
+    }
+  }

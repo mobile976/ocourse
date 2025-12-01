@@ -1,0 +1,38 @@
+  .navbar-clean {
+      background-color: #182030;
+  }
+
+  .navbar-clean .navbar-brand-text {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+  }
+
+  .navbar-clean .nav-link {
+      font-size: 0.95rem;
+      padding-inline: 0.9rem;
+  }
+
+  .navbar-clean .nav-link:hover {
+      color: #e5e7eb;
+  }
+
+  .user-chip {
+      font-size: 0.85rem;
+      line-height: 1.1;
+  }
+
+  .user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(193, 202, 215, 0.8);
+      font-size: 0.8rem;
+      font-weight: 600;
+  }
+
+  .dropdown-menu-soft {
+      border-radius: 0.6rem;
+      border-color: rgba(148, 163, 184, 0.35);
+  }
